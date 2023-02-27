@@ -1,5 +1,6 @@
 import express from "express";
-import scraping from "./scraping.routes.js";
+import bulk from "./bulk.routes.js";
+import product from "./product.routes.js";
 
 const router = express.Router();
 
@@ -7,6 +8,7 @@ router.get("/", (req, res) => {
   res.json({ message: "WORKS!" }).status(200);
 });
 
-router.use("/scraping", scraping);
+router.use("/product", product);
+router.use("/bulk", bulk);
 
 export default router;

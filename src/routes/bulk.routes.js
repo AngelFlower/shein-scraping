@@ -1,5 +1,5 @@
 import express from "express";
-import { getScraping } from "../controllers/scraping/index.js";
+import { getScraping } from "../controllers/bulk/index.js";
 
 const router = express.Router();
 
