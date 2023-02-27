@@ -41,7 +41,7 @@ export const getImages = async (req, res) => {
       return `https:${dataSrc[0].replace('data-src="', "")}`;
     });
 
-    res.json(dataSrc.slice(1)).status(200);
+    res.json(dataSrc.slice(1).toString()).status(200);
   } catch (error) {
     console.log(error);
     res.json({ message: "Error" }).status(500);
