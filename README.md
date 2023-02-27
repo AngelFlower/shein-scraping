@@ -6,7 +6,7 @@ The data is returned in a JSON format and can be used to create a database or to
 
 ### End points available
 
-- [x] /api/products/:id
+- [x] /api/products/?url=URL
 
 ## Prerequisites
 
