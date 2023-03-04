@@ -25,14 +25,25 @@ export const getInformation = async (req, res) => {
       .match(/"([^"]+)"/)[1];
 
     const data = [
-      title,
-      id,
-      salePrice,
-      dataSrc[0],
-      dataSrc.slice(1).toString(),
+      `'${title}'`,
+      `'${id}'`,
+      `'${salePrice}'`,
+      `'${dataSrc[0]}'`,
+      `'${dataSrc.slice(1)}'`,
     ];
 
-    res.json(data.join(",")).status(200);
+    /// delete [] from string
+
+    let dataString = data.toString().slice(1, -1);
+
+    // remplace ' for " in string
+
+    dataString = dataString.replace(/'/g, '"');
+    // delete \ from string
+
+    dataString = dataString.replace(/\\/g, "");
+
+    res.json(dataString).status(200);
   } catch (error) {
     console.log(error);
     res.json({ message: "Error" }).status(500);
