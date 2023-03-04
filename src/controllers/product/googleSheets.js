@@ -29,10 +29,10 @@ export const getInformation = async (req, res) => {
       id,
       salePrice,
       dataSrc[0],
-      dataSrc.slice(1).toString(),
+      `"${dataSrc.slice(1).toString()}"`,
     ];
 
-    res.json(data).status(200);
+    res.json(data.join(",")).status(200);
   } catch (error) {
     console.log(error);
     res.json({ message: "Error" }).status(500);
