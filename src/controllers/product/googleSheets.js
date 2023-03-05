@@ -12,6 +12,17 @@ export const getInformation = async (req, res) => {
 
     const imgTags = html.match(/<img[^>]+src="([^">]+)/g);
 
+    // find last mainSaleAttribute : []
+
+    const mainSaleAttribute = html
+      .match(/"mainSaleAttribute":(.*?)]/g)
+      .reverse()[0]
+      .replace('"mainSaleAttribute":', "")
+      .replace("]", "")
+      .split(":")[9];
+
+    const color = mainSaleAttribute.match(/"([^"]+)"/)[1];
+
     const dataSrc = imgTags.map((imgTag) => {
       const dataSrc = imgTag.match(/data-src="([^">]+)/g);
       return `https:${dataSrc[0].replace('data-src="', "")}`;
@@ -24,7 +35,7 @@ export const getInformation = async (req, res) => {
       .split(":")[1]
       .match(/"([^"]+)"/)[1];
 
-    const data = [title, id, salePrice, dataSrc[0], dataSrc.slice(1)];
+    const data = [id, title, color, salePrice, dataSrc[0], dataSrc.slice(1)];
 
     res
       .set(
